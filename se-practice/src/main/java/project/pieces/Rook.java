@@ -1,8 +1,15 @@
 package project.pieces;
 import project.ChessPiece;
 
+package pieces;
 public class Rook extends ChessPiece {
-    
+
+    private boolean hasMoved;
+
+    public Rook(boolean isWhite){
+        this.isWhite=isWhite;
+    }
+
     @Override
     public boolean isLegalMove(int x1, int y1, int x2, int y2) {
         int dx = Math.abs(x2 - x1);

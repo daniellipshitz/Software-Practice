@@ -2,6 +2,7 @@ package project;
 
 public abstract class ChessPiece{
     protected boolean isWhite;
+    //protected graphics image;
     
     public boolean isWhite() {
         return this.isWhite;

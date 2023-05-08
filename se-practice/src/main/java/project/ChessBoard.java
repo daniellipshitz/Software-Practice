@@ -1,9 +1,25 @@
 package project;
-
 import project.ChessPiece;
 
 public class ChessBoard {
-    ChessPiece[][] board;
+    private ChessPiece[][] board;
+    private Tree<Move> moveTree;
+    private boolean isWhiteTurn;
+    private boolean isCastleLegal;
+    //private graphics image;
+
+    public ChessBoard(){
+        this.board = new ChessPiece[8][8];
+        this.moveTree = new Tree<>();
+        this.isWhiteTurn = true;
+        this.initializeBoard();
+    }
+
+    private initializeBoard(){
+
+    }
+
+    public moveForward(int x1, int y1, int x2, int y2);
 
     public boolean isLegalMove(int x1, int y1, int x2, int y2, boolean isWhiteTurn) {
         ChessPiece piece = this.board[x1][y1];
