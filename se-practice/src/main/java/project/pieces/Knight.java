@@ -1,8 +1,12 @@
 package project.pieces;
-
 import project.ChessPiece;
 
 public class Knight extends ChessPiece {
+
+    public Knight(boolean isWhite){
+        this.isWhite=isWhite;
+    }
+
     @Override
     public boolean isLegalMove(int x1, int y1, int x2, int y2) {
         int dx = Math.abs(x2 - x1);

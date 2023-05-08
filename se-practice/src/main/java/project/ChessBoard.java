@@ -131,7 +131,9 @@ public class ChessBoard {
 
     private boolean kingInCheck(ChessPiece[][] board, ArrayList<ChessPiece> enemyPieces, boolean isWhiteTurn) {
         for (ChessPiece enemy: enemyPieces) {
-            if (isLegalMove())
+            if (isLegalMove()) {
+                
+            }
         }
     }
 }
