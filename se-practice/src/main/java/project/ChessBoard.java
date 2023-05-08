@@ -26,8 +26,8 @@ public class ChessBoard {
         return true;
     }//finsih!!!
 
-    public int[] findPiece(int x2, int y2, boolean isWhiteTurn) {
-        ArrayList<ChessPiece> ChessPiece = findPiecesOfColor();
+    public int[] findPiece(int x2, int y2, boolean isWhiteTurn, ChessPiece piece) {
+        ArrayList<ChessPiece> ChessPiece = findPiecesOfColor(isWhiteTurn, piece);
 
         for (ChessPiece piece: pieces) {
 

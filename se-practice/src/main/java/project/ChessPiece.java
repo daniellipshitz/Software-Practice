@@ -1,13 +1,7 @@
 package project;
 
-<<<<<<< HEAD
 public abstract class ChessPiece {
     protected boolean isWhite;
-=======
-public abstract class ChessPiece{
-    protected boolean isWhite;
-    //protected graphics image;
->>>>>>> cf5acdcad0b0a82b558eaecadf1516ae1b1fe28c
     
     public boolean isWhite() {
         return this.isWhite;
