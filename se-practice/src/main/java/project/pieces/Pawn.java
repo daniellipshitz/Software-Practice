@@ -3,8 +3,8 @@ import project.ChessPiece;
 
 public class Pawn extends ChessPiece {
 
-    public Pawn(boolean isWhite){
-        this.isWhite=isWhite;
+    public Pawn(boolean isWhite, int[] position){
+        super(isWhite, position);
     }
 
     @Override

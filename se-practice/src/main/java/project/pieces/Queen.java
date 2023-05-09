@@ -3,8 +3,8 @@ import project.ChessPiece;
 
 public class Queen extends ChessPiece {
 
-    public Queen(boolean isWhite){
-        this.isWhite=isWhite;
+    public Queen(boolean isWhite, int[] position){
+        super(isWhite, position);
     }
 	
     @Override
