@@ -2,14 +2,16 @@ package project;
 
 public class Move {
     private final boolean isWhite;
+    private final int moveNumber;
     private final Runnable doMove;
     private final Runnable undoMove;
     private int[] locations = new int[4];
 
-    public Move(Runnable doMove, Runnable undoMove, boolean isWhiteTurn, int x1, int y1, int x2, int y2) {
+    public Move(Runnable doMove, Runnable undoMove, boolean isWhiteTurn, int moveNumber, int x1, int y1, int x2, int y2) {
         this.doMove = doMove;
         this.undoMove = undoMove;
         this.isWhite = isWhiteTurn;
+        this.moveNumber = moveNumber;
         this.locations[0] = x1;
         this.locations[1] = y1;
         this.locations[2] = x2;
@@ -26,6 +28,10 @@ public class Move {
 
     public boolean isWhite() {
         return isWhite;
+    }
+
+    public int getMoveNumber() {
+        return this.moveNumber;
     }
 
     @Override

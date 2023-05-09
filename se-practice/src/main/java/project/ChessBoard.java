@@ -80,13 +80,13 @@ public class ChessBoard {
         return true;
     }
 
-    public int[] findPiece(int x2, int y2, boolean isWhiteTurn, ChessPiece piece) {
+    public int[] findPiece(int x2, int y2, boolean isWhiteTurn, Class<? extends ChessPiece> piece) {
         ArrayList<ChessPiece> pieces = getPiecesOfColor(isWhiteTurn);
 
         int[] position = new int[2];
 
         for (ChessPiece currentPiece: pieces) {
-            if (!(currentPiece.getClass() == piece.getClass()) || !isPossibleMove(currentPiece.getPosition()[0], currentPiece.getPosition()[1], x2, y2, isWhiteTurn)) {
+            if (!(currentPiece.getClass() == piece) || !isPossibleMove(currentPiece.getPosition()[0], currentPiece.getPosition()[1], x2, y2, isWhiteTurn)) {
                 continue;
             }
             position = currentPiece.getPosition();
@@ -166,7 +166,9 @@ public class ChessBoard {
             board[x2][y2].setPosition(x2, y2);
         };
 
-        Move move = new Move(doMove, undoMove, isWhiteTurn, x1, y1, x2, y2);
+        int moveNumber = moveTree.getMove() == null? 0: moveTree.getMove().getMoveNumber();
+        moveNumber += ((isWhiteTurn) ? 1 : 0);
+        Move move = new Move(doMove, undoMove, isWhiteTurn, moveNumber, x1, y1, x2, y2);
         moveTree.addMove(move);
 
         moveTree.getMove().doMove();
