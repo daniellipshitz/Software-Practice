@@ -34,15 +34,15 @@ public class Game {
     private List<String> readPgnFile(String filename) throws IOException {
         List<String> moves = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
-        BufferedReader br = new BufferedReader(new FileReader(filename));
-        String line;
-    
-        while ((line = br.readLine()) != null) {
-            if (line.startsWith("1.")) {
-                sb.append(line);
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String line;
+   
+            while ((line = br.readLine()) != null) {
+                if(String.valueOf(line.charAt(0)).matches("[1-9]")) {
+                    sb.append(line);
+                }
             }
         }
-    
         String[] tokens = sb.toString().split("\\s+");
         for (String token : tokens) {
             if (token.matches("\\d+\\.")) {
