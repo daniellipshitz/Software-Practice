@@ -83,7 +83,7 @@ public class ChessBoard {
     public int[] findPiece(int x2, int y2, boolean isWhiteTurn, Class<? extends ChessPiece> piece) {
         ArrayList<ChessPiece> pieces = getPiecesOfColor(isWhiteTurn);
 
-        int[] position = new int[2];
+        int[] position = new int[4];
 
         for (ChessPiece currentPiece: pieces) {
             if (!(currentPiece.getClass() == piece) || !isPossibleMove(currentPiece.getPosition()[0], currentPiece.getPosition()[1], x2, y2, isWhiteTurn)) {
