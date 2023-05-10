@@ -8,12 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.ChessPiece;
-import project.pieces.Bishop;
-import project.pieces.King;
-import project.pieces.Knight;
-import project.pieces.Pawn;
-import project.pieces.Queen;
-import project.pieces.Rook;
+import project.pieces.*;
 import project.ChessBoard;
 
 public class Game {

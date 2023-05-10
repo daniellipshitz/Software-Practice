@@ -3,7 +3,7 @@ import project.ChessPiece;
 
 public class Bishop extends ChessPiece {
 
-    public Bishop(boolean isWhite, int[] position){
+    public Bishop(boolean isWhite, int[] position) {
         super(isWhite, position);
         String temp = getColorPath("bishop", this.isWhite);
         this.img=pathToScaledImage(temp);
