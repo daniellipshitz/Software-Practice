@@ -36,17 +36,33 @@ public class Game {
         StringBuilder sb = new StringBuilder();
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
-   
+
+            boolean startReadingMoves = false;
             while ((line = br.readLine()) != null) {
-                if(String.valueOf(line.charAt(0)).matches("[1-9]")) {
+                if (line.startsWith("1.")) {
+                    sb.append(line);
+                }
+                else if (startReadingMoves) {
                     sb.append(line);
                 }
             }
         }
+        
         String[] tokens = sb.toString().split("\\s+");
+        boolean ignore = false;
         for (String token : tokens) {
-            if (token.matches("\\d+\\.")) {
-                continue; // ignore move numbers
+            if (ignore) {
+                if (token.endsWith("}")) {
+                    ignore = false;
+                }
+                continue;
+            }
+            else if (token.startsWith("{")) {
+                ignore = true;
+                continue;
+            }
+            else if (token.matches("\\d+\\.")) { //move number
+                continue;
             } else if (token.matches("[a-h][1-8]")) {
                 moves.add("P" + token);
             } else if (token.matches("[KQRBN][a-h]?[1-8]?[x-]?[a-h][1-8]([+#])?")) {
