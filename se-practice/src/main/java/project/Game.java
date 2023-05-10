@@ -27,14 +27,14 @@ public class Game {
     public Game() throws IOException {
         this.board = new ChessBoard();
         //throw new IOException(System.getProperty("user.dir"));
-        this.moves = readPgnFile("Morphy.pgn");
+        this.moves = readPgnFile("project/Morphy.pgn");
 
         for (String move: moves) {
             move(move);
         }
     }
 
-    private void manageGraphics(){
+    public void manageGraphics(){
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(3);
@@ -46,19 +46,19 @@ public class Game {
             @Override
             public void paint(Graphics g){
                 boolean white = false;
-                for(int i=0;i<horizontalBound;i+=64){
+                for(int i=0;i<8;i++){
                     white=!white;
-                    for(int j=0;j<verticalBound;j+=64){
+                    for(int j=0;j<8;j++){
                         if(white){
                             g.setColor(Color.WHITE.darker());
                         }
                         else{
                             g.setColor(Color.BLACK.brighter());
                         }
-                        g.fillRect(i,j,64,64);
+                        g.fillRect(i*64,j*64,64,64);
                         ChessPiece temp = board.board[i][j];
                         if(temp!=null){
-                            g.drawImage(temp.getImage(), i, j, this);
+                            g.drawImage(temp.getImage(), i*64, j*64, this);
                         }
                         white=!white;
                     }

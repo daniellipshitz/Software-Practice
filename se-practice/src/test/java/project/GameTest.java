@@ -10,6 +10,7 @@ public class GameTest{
 	@Test
 	public void creationTest() throws IOException{
 		Game game = new Game();
+		game.manageGraphics();
 		//assertThrows(IOException.class,()->{
 		//	Game game = new Game("a");
 		//});

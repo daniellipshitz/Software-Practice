@@ -21,15 +21,16 @@ public abstract class ChessPiece {
 
     public String getColorPath(String path, boolean isWhite){
         if(isWhite){
+            //return "pieces/images/"+
             return path+"White.png";
         }
         else{
-            return path+"Black.png";
+            return "pieces/images/"+path+"Black.png";
         }
     }
 
     public Image pathToScaledImage(String path) throws IOException{
-        return ImageIO.read(new File("path")).getScaledInstance(64,64,BufferedImage.SCALE_SMOOTH);
+        return ImageIO.read(new File(path)).getScaledInstance(64,64,BufferedImage.SCALE_SMOOTH);
     }
     
     public boolean isWhite() {
