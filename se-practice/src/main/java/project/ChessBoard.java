@@ -160,9 +160,13 @@ public class ChessBoard{
         };
         Runnable undoMove = () -> {
             board[x1][y1] = sourcePiece;
-            board[x1][y1].setPosition(x1, y1);
+            if (board[x1][y1] != null) {
+                board[x1][y1].setPosition(x1, y1);
+            }
             board[x2][y2] = destinationPiece;
-            board[x2][y2].setPosition(x2, y2);
+            if (board[x2][y2] != null) {
+                board[x2][y2].setPosition(x2, y2);
+            }
         };
 
         int moveNumber = moveTree.getMove() == null? 0: moveTree.getMove().getMoveNumber();
