@@ -95,8 +95,8 @@ public class ChessBoard{
     private ArrayList<ChessPiece> getPiecesOfColor(boolean isWhiteTurn) {
         ArrayList<ChessPiece> pieces = new ArrayList<ChessPiece>();
 
-        for (int i=0; i < this.board.length; i++) {
-            for (int j=0; i < this.board[i].length; j++) {
+        for (int i=0; i < 8; i++) {
+            for (int j=0; i < 8; j++) {
                 if (this.board[i][j] != null && this.board[i][j].isWhite() == isWhiteTurn) {
                     pieces.add(this.board[i][j]);
                 }

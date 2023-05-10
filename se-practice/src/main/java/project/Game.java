@@ -136,8 +136,8 @@ public class Game {
     }
 
     public boolean move(String move) {
-        int x2 = alphabet.indexOf(move.charAt(move.length() -2))+1;
-        int y2 = Character.getNumericValue(move.charAt(move.length() -1));
+        int x2 = alphabet.indexOf(move.charAt(move.length() -2));
+        int y2 = Character.getNumericValue(move.charAt(move.length() -1))-1;
 
         Class<? extends ChessPiece> piece = getPieceClass(move.charAt(0));
 
