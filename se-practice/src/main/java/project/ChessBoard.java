@@ -22,28 +22,28 @@ public class ChessBoard{
     }
 
     private void initializeBoard() {
-        board[0][0] = new Rook(false, new int[]{0, 0});
-        board[0][1] = new Knight(false, new int[]{0, 1});
-        board[0][2] = new Bishop(false, new int[]{0, 2});
-        board[0][3] = new Queen(false, new int[]{0, 3});
-        board[0][4] = new King(false, new int[]{0, 4});
-        board[0][5] = new Bishop(false, new int[]{0, 5});
-        board[0][6] = new Knight(false, new int[]{0, 6});
-        board[0][7] = new Rook(false, new int[]{0, 7});
+        board[0][0] = new Rook(true, new int[]{0, 0});
+        board[1][0] = new Knight(true, new int[]{0, 1});
+        board[2][0] = new Bishop(true, new int[]{0, 2});
+        board[3][0] = new Queen(true, new int[]{0, 3});
+        board[4][0] = new King(true, new int[]{0, 4});
+        board[5][0] = new Bishop(true, new int[]{0, 5});
+        board[6][0] = new Knight(true, new int[]{0, 6});
+        board[7][0] = new Rook(true, new int[]{0, 7});
 
         for (int i = 0; i < 8; i++) {
-            board[1][i] = new Pawn(false, new int[]{1, i});
-            board[6][i] = new Pawn(true, new int[]{6, i});
+            board[i][1] = new Pawn(true, new int[]{1, i});
+            board[i][6] = new Pawn(false, new int[]{6, i});
         }
         
-        board[7][0] = new Rook(true, new int[]{7, 0});
-        board[7][1] = new Knight(true, new int[]{7, 1});
-        board[7][2] = new Bishop(true, new int[]{7, 2});
-        board[7][3] = new Queen(true, new int[]{7, 3});
-        board[7][4] = new King(true, new int[]{7, 4});
-        board[7][5] = new Bishop(true, new int[]{7, 5});
-        board[7][6] = new Knight(true, new int[]{7, 6});
-        board[7][7] = new Rook(true, new int[]{7, 7});
+        board[0][7] = new Rook(false, new int[]{7, 0});
+        board[1][7] = new Knight(false, new int[]{7, 1});
+        board[2][7] = new Bishop(false, new int[]{7, 2});
+        board[3][7] = new Queen(false, new int[]{7, 3});
+        board[4][7] = new King(false, new int[]{7, 4});
+        board[5][7] = new Bishop(false, new int[]{7, 5});
+        board[6][7] = new Knight(false, new int[]{7, 6});
+        board[7][7] = new Rook(false, new int[]{7, 7});
     }
 
     public boolean move(int x1, int y1, int x2, int y2) {
@@ -95,8 +95,8 @@ public class ChessBoard{
     private ArrayList<ChessPiece> getPiecesOfColor(boolean isWhiteTurn) {
         ArrayList<ChessPiece> pieces = new ArrayList<ChessPiece>();
 
-        for (int i=0; i < this.board.length; i++) {
-            for (int j=0; i < this.board[i].length; j++) {
+        for (int i=0; i < 8; i++) {
+            for (int j=0; i < 8; j++) {
                 if (this.board[i][j] != null && this.board[i][j].isWhite() == isWhiteTurn) {
                     pieces.add(this.board[i][j]);
                 }
