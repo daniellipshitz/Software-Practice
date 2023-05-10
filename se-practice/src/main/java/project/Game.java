@@ -34,19 +34,35 @@ public class Game {
     private List<String> readPgnFile(String filename) throws IOException {
         List<String> moves = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
-        BufferedReader br = new BufferedReader(new FileReader(filename));
-        String line;
-    
-        while ((line = br.readLine()) != null) {
-            if (line.startsWith("1.")) {
-                sb.append(line);
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String line;
+
+            boolean startReadingMoves = false;
+            while ((line = br.readLine()) != null) {
+                if (line.startsWith("1.")) {
+                    sb.append(line);
+                }
+                else if (startReadingMoves) {
+                    sb.append(line);
+                }
             }
         }
-    
+        
         String[] tokens = sb.toString().split("\\s+");
+        boolean ignore = false;
         for (String token : tokens) {
-            if (token.matches("\\d+\\.")) {
-                continue; // ignore move numbers
+            if (ignore) {
+                if (token.endsWith("}")) {
+                    ignore = false;
+                }
+                continue;
+            }
+            else if (token.startsWith("{")) {
+                ignore = true;
+                continue;
+            }
+            else if (token.matches("\\d+\\.")) { //move number
+                continue;
             } else if (token.matches("[a-h][1-8]")) {
                 moves.add("P" + token);
             } else if (token.matches("[KQRBN][a-h]?[1-8]?[x-]?[a-h][1-8]([+#])?")) {
@@ -63,27 +79,50 @@ public class Game {
         return moves;
     }
 
-    public boolean backMove() {
-        
+    public void backMove() {
+        board.moveTree.traverseUp(1);
+
+        //reset graphics
     }
 
-    public boolean forwardMove(int move) {
-        board
+    public void forwardMove(int move) {
+        board.moveTree.traverseDown(move);
+
+        //reset graphics
     }
 
     public boolean move(String move) {
-        int x2 = alphabet.indexOf(move.charAt(-2))+1;
-        int y2 = Character.getNumericValue(move.charAt(-1));
+        int x2 = alphabet.indexOf(move.charAt(move.length() -2))+1;
+        int y2 = Character.getNumericValue(move.charAt(move.length() -1));
 
         Class<? extends ChessPiece> piece = getPieceClass(move.charAt(0));
 
-        int[] sourcePosition = board.findPiece(x2, y2, !board.moveTree.getMove().isWhite(), piece);
-        
+        ArrayList<int[]> sourcePosition = board.findPiece(x2, y2, !board.moveTree.getMove().isWhite(), piece);
 
+        int x1;
+        int y1;
 
+        if (sourcePosition.size() > 1) {
+            Character c = move.charAt(1);
+            int pos = Character.getNumericValue(c);
+            int[] position;
+            if (pos > 0) {
+                position = findPosition(sourcePosition, pos, 1);
+            }
+            else {
+                position = findPosition(sourcePosition, alphabet.indexOf(c), 0);
+            }
+            x1 = position[0];
+            y1 = position[1];
+        }
+        else {
+            x1 = sourcePosition.get(0)[0];
+            y1 = sourcePosition.get(0)[1];
+        }
 
+        return board.move(x1, y1, x2, y2);
 
-        board.move(sourcePosition[0], sourcePosition[1], x2, y2);
+        //reset graphics
     }
 
     public void addNote(String txt) {
@@ -107,5 +146,14 @@ public class Game {
             default:
                 throw new IllegalArgumentException("Invalid piece type: " + piece);
         }
+    }
+
+    private int [] findPosition(ArrayList<int[]> sourcePosition, int coordinate, int index) {
+        for (int[] position: sourcePosition) {
+            if (position[index] == coordinate) {
+                return position;
+            }
+        }
+        return sourcePosition.get(0);
     }
 }

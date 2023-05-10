@@ -121,19 +121,18 @@ public class ChessBoard {
         return true;
     }
 
-    public int[] findPiece(int x2, int y2, boolean isWhiteTurn, Class<? extends ChessPiece> piece) {
+    public ArrayList<int[]> findPiece(int x2, int y2, boolean isWhiteTurn, Class<? extends ChessPiece> piece) {
         ArrayList<ChessPiece> pieces = getPiecesOfColor(isWhiteTurn);
-
-        int[] position = new int[2];
+        ArrayList<int[]> positions = new ArrayList<>();
 
         for (ChessPiece currentPiece: pieces) {
             if (!(currentPiece.getClass() == piece) || !isPossibleMove(currentPiece.getPosition()[0], currentPiece.getPosition()[1], x2, y2, isWhiteTurn)) {
                 continue;
             }
-            position = currentPiece.getPosition();
+            positions.add(currentPiece.getPosition());
         }
 
-        return position;
+        return positions;
     }
 
     private ArrayList<ChessPiece> getPiecesOfColor(boolean isWhiteTurn) {
