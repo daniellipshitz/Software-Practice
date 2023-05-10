@@ -21,11 +21,10 @@ public abstract class ChessPiece {
 
     public String getColorPath(String path, boolean isWhite){
         if(isWhite){
-            //return "pieces/images/"+
             return path+"White.png";
         }
         else{
-            return "pieces/images/"+path+"Black.png";
+            return path+"Black.png";
         }
     }
 

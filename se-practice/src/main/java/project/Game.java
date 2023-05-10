@@ -205,6 +205,20 @@ public class Game {
     private void drawMove() {
         int[] locations = board.moveTree.getMove().getLocations();
 
+        ChessPiece sourcePiece = board.board[locations[0]][locations[1]];
+        if(sourcePiece !=null){
+            g.drawImage(sourcePiece.getImage(), locations[0], locations[1], this);
+        }
+        else {
 
+        }
+
+        ChessPiece destinationPiece = board.board[locations[2]][locations[3]];
+        if(destinationPiece !=null){
+            g.drawImage(destinationPiece.getImage(), locations[2], locations[3], this);
+        }
+        else {
+
+        }
     }
 }
