@@ -27,7 +27,7 @@ public class Game {
     public Game() throws IOException {
         this.board = new ChessBoard();
         //throw new IOException(System.getProperty("user.dir"));
-        this.moves = readPgnFile("Morphy.txt");
+        this.moves = readPgnFile("Morphy.pgn");
 
         for (String move: moves) {
             move(move);
