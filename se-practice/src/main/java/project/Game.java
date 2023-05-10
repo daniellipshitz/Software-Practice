@@ -23,9 +23,11 @@ public class Game {
     File f;
     final static String alphabet = "abcdefghijklmnopqrstuvwxyz";
     
-    public Game(String filename) throws IOException {
+    //public Game(String filename) throws IOException {
+    public Game() throws IOException {
         this.board = new ChessBoard();
-        this.moves = readPgnFile(filename);
+        //throw new IOException(System.getProperty("user.dir"));
+        this.moves = readPgnFile("Morphy.txt");
 
         for (String move: moves) {
             move(move);
@@ -139,7 +141,7 @@ public class Game {
 
         Class<? extends ChessPiece> piece = getPieceClass(move.charAt(0));
 
-        ArrayList<int[]> sourcePosition = board.findPiece(x2, y2, !board.moveTree.getMove().isWhite(), piece);
+        ArrayList<int[]> sourcePosition = board.findPiece(x2, y2, !(board.moveTree.getMove() == null? false: board.moveTree.getMove().isWhite()), piece);
 
         int x1;
         int y1;
