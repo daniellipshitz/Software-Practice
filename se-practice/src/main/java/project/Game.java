@@ -202,7 +202,8 @@ public class Game {
         return sourcePosition.get(0);
     }
 
-    /*private void drawMove() {
+    /*
+    private void drawMove() {
         int[] locations = board.moveTree.getMove().getLocations();
 
         ChessPiece sourcePiece = board.board[locations[0]][locations[1]];
