@@ -14,12 +14,10 @@ import java.awt.Image;
 public class ChessBoard{
     ChessPiece[][] board;
     MoveTree moveTree;
-    JFrame frame;
 
     public ChessBoard() {
         this.board = new ChessPiece[8][8];
         this.moveTree = new MoveTree();
-        this.frame = new JFrame();
         initializeBoard();
     }
 
@@ -55,47 +53,6 @@ public class ChessBoard{
 
         createMove(x1, y1, x2, y2, (!moveTree.getMove().isWhite()));
         return true;
-    }
-
-    public void drawBoard(){
-        frame.setDefaultCloseOperation(3);
-        int horizontalBound = 512;
-        int verticalBound = 512;
-        frame.setBounds(0,0,horizontalBound,verticalBound);
-
-        JPanel jp = new JPanel(){
-            @Override
-            public void paint(Graphics g){
-                boolean white = false;
-                for(int i=0;i<horizontalBound;i+=64){
-                    white=!white;
-                    for(int j=0;j<verticalBound;j+=64){
-                        if(white){
-                            g.setColor(Color.WHITE.darker());
-                        }
-                        else{
-                            g.setColor(Color.BLACK.brighter());
-                        }
-                        g.fillRect(i,j,64,64);
-                        drawPiece(g, i/64, j/64);
-                        white=!white;
-                    }
-                }
-                //g.drawImage(img2, 0, 0, this);
-            }
-        };
-
-        frame.add(jp);
-        frame.setVisible(true);
-    }
-
-    private void drawPiece(Graphics g, int xp, int yp){
-        if(this.board[xp][yp]==null){
-            return;
-        }
-        else{
-            g.drawImage(this.board[xp][yp].getImage(), xp, yp, this);
-        }
     }
 
     public boolean isPossibleMove(int x1, int y1, int x2, int y2, boolean isWhiteTurn) {

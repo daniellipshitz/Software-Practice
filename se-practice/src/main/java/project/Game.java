@@ -10,6 +10,12 @@ import java.util.List;
 import project.ChessPiece;
 import project.pieces.*;
 import project.ChessBoard;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.awt.Image;
 
 public class Game {
     List<String> moves;
@@ -24,6 +30,42 @@ public class Game {
         for (String move: moves) {
             move(move);
         }
+    }
+
+    private void manageGraphics(){
+
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(3);
+        int horizontalBound = 512;
+        int verticalBound = 512;
+        frame.setBounds(0,0,horizontalBound*2,verticalBound);
+
+        JPanel jp = new JPanel(){
+            @Override
+            public void paint(Graphics g){
+                boolean white = false;
+                for(int i=0;i<horizontalBound;i+=64){
+                    white=!white;
+                    for(int j=0;j<verticalBound;j+=64){
+                        if(white){
+                            g.setColor(Color.WHITE.darker());
+                        }
+                        else{
+                            g.setColor(Color.BLACK.brighter());
+                        }
+                        g.fillRect(i,j,64,64);
+                        ChessPiece temp = board.board[i][j];
+                        if(temp!=null){
+                            g.drawImage(temp.getImage(), i, j, this);
+                        }
+                        white=!white;
+                    }
+                }
+            }
+        };
+
+        frame.add(jp);
+        frame.setVisible(true);
     }
 
     private List<String> readPgnFile(String filename) throws IOException {
@@ -71,6 +113,7 @@ public class Game {
             }
         }
     
+        //reset graphics
         return moves;
     }
 

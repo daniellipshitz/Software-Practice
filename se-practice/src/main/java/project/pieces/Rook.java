@@ -1,4 +1,6 @@
 package project.pieces;
+import java.io.IOException;
+
 import project.ChessPiece;
 
 public class Rook extends ChessPiece {
@@ -9,7 +11,12 @@ public class Rook extends ChessPiece {
         super(isWhite, position);
         this.hasMoved = false;
         String temp = getColorPath("rook", this.isWhite);
-        this.img=pathToScaledImage(temp);
+        try {
+            this.img=pathToScaledImage(temp);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     @Override
