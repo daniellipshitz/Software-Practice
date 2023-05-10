@@ -8,6 +8,8 @@ public class King extends ChessPiece {
     public King(boolean isWhite, int[] position){
         super(isWhite, position);
         this.hasMoved = false;
+        String temp = getColorPath("king", this.isWhite);
+        this.img=pathToScaledImage(temp);
     }
 	
     @Override

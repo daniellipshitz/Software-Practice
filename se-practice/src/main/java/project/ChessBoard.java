@@ -3,21 +3,24 @@ package project;
 import java.util.ArrayList;
 
 import project.ChessPiece;
-import project.pieces.Bishop;
-import project.pieces.King;
-import project.pieces.Knight;
-import project.pieces.Pawn;
-import project.pieces.Queen;
-import project.pieces.Rook;
+import project.pieces.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.awt.Image;
 
 public class ChessBoard {
     ChessPiece[][] board;
     MoveTree moveTree;
+    JFrame frame;
 
     public ChessBoard() {
         this.board = new ChessPiece[8][8];
-        initializeBoard();
         this.moveTree = new MoveTree();
+        this.frame = new JFrame();
+        initializeBoard();
     }
 
     private void initializeBoard() {
@@ -32,6 +35,7 @@ public class ChessBoard {
 
         for (int i = 0; i < 8; i++) {
             board[1][i] = new Pawn(false, new int[]{1, i});
+            board[6][i] = new Pawn(true, new int[]{6, i});
         }
         
         board[7][0] = new Rook(true, new int[]{7, 0});
@@ -42,10 +46,6 @@ public class ChessBoard {
         board[7][5] = new Bishop(true, new int[]{7, 5});
         board[7][6] = new Knight(true, new int[]{7, 6});
         board[7][7] = new Rook(true, new int[]{7, 7});
-
-        for (int i = 0; i < 8; i++) {
-            board[6][i] = new Pawn(true, new int[]{6, i});
-        }
     }
 
     public boolean move(int x1, int y1, int x2, int y2) {
@@ -55,6 +55,47 @@ public class ChessBoard {
 
         createMove(x1, y1, x2, y2, (!moveTree.getMove().isWhite()));
         return true;
+    }
+
+    public void drawBoard(){
+        frame.setDefaultCloseOperation(3);
+        int horizontalBound = 512;
+        int verticalBound = 512;
+        frame.setBounds(0,0,horizontalBound,verticalBound);
+
+        JPanel jp = new JPanel(){
+            @Override
+            public void paint(Graphics g){
+                boolean white = false;
+                for(int i=0;i<horizontalBound;i+=64){
+                    white=!white;
+                    for(int j=0;j<verticalBound;j+=64){
+                        if(white){
+                            g.setColor(Color.WHITE.darker());
+                        }
+                        else{
+                            g.setColor(Color.BLACK.brighter());
+                        }
+                        g.fillRect(i,j,64,64);
+                        drawPiece(g, i/64, j/64);
+                        white=!white;
+                    }
+                }
+                //g.drawImage(img2, 0, 0, this);
+            }
+        };
+
+        frame.add(jp);
+        frame.setVisible(true);
+    }
+
+    private void drawPiece(Graphics g, int xp, int yp){
+        if(this.board[i][j]==null){
+            return;
+        }
+        else{
+            g.drawImage(this.board[i][j].getImage(), i, j, this);
+        }
     }
 
     public boolean isPossibleMove(int x1, int y1, int x2, int y2, boolean isWhiteTurn) {

@@ -1,12 +1,35 @@
 package project;
+import java.awt.image.BufferedImage;
+import java.awt.Image;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 
 public abstract class ChessPiece {
     protected boolean isWhite;
     protected int[] position;
+    protected Image img;
 
     public ChessPiece(boolean isWhite, int[] position){
         this.isWhite = isWhite;
         this.position = position;
+    }
+
+    public Image getImage(){
+        return this.img;
+    }
+
+    public String getColorPath(String path, boolean isWhite){
+        if(isWhite){
+            return path+"White.png";
+        }
+        else{
+            return path+"Black.png";
+        }
+    }
+
+    public Image pathToScaledImage(String path) throws IOException{
+        return ImageIO.read(new File("path")).getScaledInstance(64,64,BufferedImage.SCALE_SMOOTH);
     }
     
     public boolean isWhite() {

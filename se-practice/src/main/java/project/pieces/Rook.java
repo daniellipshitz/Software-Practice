@@ -8,6 +8,8 @@ public class Rook extends ChessPiece {
     public Rook(boolean isWhite, int[] position){
         super(isWhite, position);
         this.hasMoved = false;
+        String temp = getColorPath("rook", this.isWhite);
+        this.img=pathToScaledImage(temp);
     }
 
     @Override

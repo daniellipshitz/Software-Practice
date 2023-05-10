@@ -5,6 +5,8 @@ public class Knight extends ChessPiece {
 
     public Knight(boolean isWhite, int[] position){
         super(isWhite, position);
+        String temp = getColorPath("knight", this.isWhite);
+        this.img=pathToScaledImage(temp);
     }
 
     @Override
