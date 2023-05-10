@@ -120,13 +120,15 @@ public class Game {
     public void backMove() {
         board.moveTree.traverseUp(1);
 
-        int[] locations = board.moveTree.getMove().getLocations();
+        drawMove();
 
         //reset graphics
     }
 
     public void forwardMove(int move) {
         board.moveTree.traverseDown(move);
+
+        drawMove();
 
         //reset graphics
     }
@@ -195,5 +197,9 @@ public class Game {
             }
         }
         return sourcePosition.get(0);
+    }
+
+    private void drawMove() {
+        int[] locations = board.moveTree.getMove().getLocations();
     }
 }
