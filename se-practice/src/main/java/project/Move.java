@@ -53,4 +53,8 @@ public class Move {
         }
         return result;
     }
+
+    public int[] getLocations() {
+        return this.locations;
+    }
 }

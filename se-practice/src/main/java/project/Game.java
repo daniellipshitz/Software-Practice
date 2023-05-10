@@ -120,7 +120,7 @@ public class Game {
     public void backMove() {
         board.moveTree.traverseUp(1);
 
-        board.moveTree.getMove();
+        int[] locations = board.moveTree.getMove().getLocations();
 
         //reset graphics
     }
