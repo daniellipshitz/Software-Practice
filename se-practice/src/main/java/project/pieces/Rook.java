@@ -15,7 +15,7 @@ public class Rook extends ChessPiece {
         int dx = Math.abs(x2 - x1);
         int dy = Math.abs(y2 - y1);
 
-        if (dx == dy) {
+        if ((dx>0 && dy == 0) || (dx == 0 && dy>0)) {
             return true;
         }
         return false;
