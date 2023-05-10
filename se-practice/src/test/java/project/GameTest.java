@@ -10,10 +10,10 @@ public class GameTest{
 
 	@Test
 	public void creationTest() throws IOException{
-		//assertThrows(IOException.class,()->{
-		//	Game game = new Game("a");
-		//});
+		assertThrows(IOException.class,()->{
+			Game game = new Game("a");
+		});
 
-		Game game = new Game("Morphy.pgn");
+		//Game game = new Game("Morphy.pgn");
 	}
 }
