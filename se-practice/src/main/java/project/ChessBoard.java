@@ -49,7 +49,7 @@ public class ChessBoard{
     }
 
     public boolean move(int x1, int y1, int x2, int y2) {
-        if (!isLegalMove(x1, y1, x2, y2, moveTree.getMove().isWhite())) {
+        if (!isLegalMove(x1, y1, x2, y2, !moveTree.getMove().isWhite())) {
             return false;
         }
 
@@ -98,7 +98,7 @@ public class ChessBoard{
         ArrayList<ChessPiece> pieces = new ArrayList<ChessPiece>();
 
         for (int i=0; i < 8; i++) {
-            for (int j=0; i < 8; j++) {
+            for (int j=0; j < 8; j++) {
                 if (this.board[i][j] != null && this.board[i][j].isWhite() == isWhiteTurn) {
                     pieces.add(this.board[i][j]);
                 }
@@ -113,9 +113,9 @@ public class ChessBoard{
             return false;
         }
         
-        if (kingInCheck(this.board, getEnemyPieces(this.board, isWhiteTurn), isWhiteTurn) && putsKingInCheck(x1, y1, x2, y2, isWhiteTurn)) {
-            return false;
-        }
+        //if (kingInCheck(this.board, getEnemyPieces(this.board, isWhiteTurn), isWhiteTurn) && putsKingInCheck(x1, y1, x2, y2, isWhiteTurn)) {
+        //    return false;
+        //}
 
         //if (putsKingInCheck(x1, y1, x2, y2, isWhiteTurn)) {
         //    if (isWhiteTurn == piece.isWhite())

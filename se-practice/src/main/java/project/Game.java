@@ -141,7 +141,7 @@ public class Game {
 
         Class<? extends ChessPiece> piece = getPieceClass(move.charAt(0));
 
-        ArrayList<int[]> sourcePosition = board.findPiece(x2, y2, !(board.moveTree.getMove() == null? false: board.moveTree.getMove().isWhite()), piece);
+        ArrayList<int[]> sourcePosition = board.findPiece(x2, y2, !board.moveTree.getMove().isWhite(), piece);
 
         int x1;
         int y1;
