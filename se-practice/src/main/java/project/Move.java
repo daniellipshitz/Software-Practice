@@ -18,6 +18,18 @@ public class Move {
         this.locations[3] = y2;
     }
 
+    public Move() {
+        this.isWhite = false;
+
+        this.doMove = null;
+        this.undoMove = null;
+        this.moveNumber = 0;
+        this.locations[0] = 0;
+        this.locations[1] = 0;
+        this.locations[2] = 0;
+        this.locations[3] = 0;
+    }
+
     public void doMove() {
         doMove.run();
     }
