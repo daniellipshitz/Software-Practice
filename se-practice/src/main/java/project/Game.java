@@ -46,17 +46,17 @@ public class Game {
             @Override
             public void paint(Graphics g){
                 boolean white = false;
-                for(int i=7;i>=0;i--){
+                for(int i=0;i<8;i++){
                     white=!white;
-                    for(int j=8;j>=0;j--){
+                    for(int j=0;j<8;j++){
                         if(white){
-                            g.setColor(Color.WHITE.darker());
+                            g.setColor(Color.WHITE);
                         }
                         else{
-                            g.setColor(Color.BLACK.brighter());
+                            g.setColor(Color.BLUE.darker().darker());
                         }
                         g.fillRect(i*64,j*64,64,64);
-                        ChessPiece temp = board.board[i][j];
+                        ChessPiece temp = board.board[i][7-j];
                         if(temp!=null){
                             g.drawImage(temp.getImage(), i*64, j*64, this);
                         }
