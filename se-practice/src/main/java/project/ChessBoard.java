@@ -11,7 +11,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.Image;
 
-public class ChessBoard {
+public class ChessBoard{
     ChessPiece[][] board;
     MoveTree moveTree;
     JFrame frame;
@@ -90,11 +90,11 @@ public class ChessBoard {
     }
 
     private void drawPiece(Graphics g, int xp, int yp){
-        if(this.board[i][j]==null){
+        if(this.board[xp][yp]==null){
             return;
         }
         else{
-            g.drawImage(this.board[i][j].getImage(), i, j, this);
+            g.drawImage(this.board[xp][yp].getImage(), xp, yp, this);
         }
     }
 
