@@ -27,7 +27,7 @@ public class Game {
     public Game() throws IOException {
         this.board = new ChessBoard();
         //throw new IOException(System.getProperty("user.dir"));
-        this.moves = readPgnFile("project/Morphy.pgn");
+        this.moves = readPgnFile("Morphy.pgn");
 
         for (String move: moves) {
             move(move);
@@ -122,7 +122,7 @@ public class Game {
     public void backMove() {
         board.moveTree.traverseUp(1);
 
-        drawMove();
+        //drawMove();
 
         //reset graphics
     }
@@ -130,7 +130,7 @@ public class Game {
     public void forwardMove(int move) {
         board.moveTree.traverseDown(move);
 
-        drawMove();
+        //drawMove();
 
         //reset graphics
     }
@@ -165,7 +165,7 @@ public class Game {
         }
 
         boolean success = board.move(x1, y1, x2, y2);
-        drawMove();
+        //drawMove();
 
         return success;
     }
@@ -202,7 +202,7 @@ public class Game {
         return sourcePosition.get(0);
     }
 
-    private void drawMove() {
+    /*private void drawMove() {
         int[] locations = board.moveTree.getMove().getLocations();
 
         ChessPiece sourcePiece = board.board[locations[0]][locations[1]];
@@ -221,4 +221,5 @@ public class Game {
 
         }
     }
+    */
 }
