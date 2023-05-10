@@ -98,7 +98,7 @@ public class ChessBoard{
         ArrayList<ChessPiece> pieces = new ArrayList<ChessPiece>();
 
         for (int i=0; i < 8; i++) {
-            for (int j=0; i < 8; j++) {
+            for (int j=0; j < 8; j++) {
                 if (this.board[i][j] != null && this.board[i][j].isWhite() == isWhiteTurn) {
                     pieces.add(this.board[i][j]);
                 }
