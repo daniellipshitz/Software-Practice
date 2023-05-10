@@ -44,6 +44,8 @@ public class ChessBoard{
         board[5][7] = new Bishop(false, new int[]{7, 5});
         board[6][7] = new Knight(false, new int[]{7, 6});
         board[7][7] = new Rook(false, new int[]{7, 7});
+
+        moveTree.addMove(new Move());
     }
 
     public boolean move(int x1, int y1, int x2, int y2) {
