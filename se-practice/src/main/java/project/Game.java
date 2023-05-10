@@ -162,9 +162,10 @@ public class Game {
             y1 = sourcePosition.get(0)[1];
         }
 
-        return board.move(x1, y1, x2, y2);
+        boolean success = board.move(x1, y1, x2, y2);
+        drawMove();
 
-        //reset graphics
+        return success;
     }
 
     public void addNote(String txt) {
@@ -201,5 +202,7 @@ public class Game {
 
     private void drawMove() {
         int[] locations = board.moveTree.getMove().getLocations();
+
+
     }
 }
