@@ -71,6 +71,7 @@ public class Game {
             }
         }
     
+        //reset graphics
         return moves;
     }
 

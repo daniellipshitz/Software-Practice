@@ -90,11 +90,11 @@ public class ChessBoard {
     }
 
     private void drawPiece(Graphics g, int xp, int yp){
-        if(this.board[i][j]==null){
+        if(this.board[xp][yp]==null){
             return;
         }
         else{
-            g.drawImage(this.board[i][j].getImage(), i, j, this);
+            g.drawImage(this.board[xp][yp].getImage(), xp, yp, this);
         }
     }
 
